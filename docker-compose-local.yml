@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  postgres:
+    restart: always
+    image: "postgres:10.4-alpine"
+    environment:
+      POSTGRES_DB: movies-ms
+      POSTGRES_USER: movies-ms
+      POSTGRES_PASSWORD: movies-ms
+    ports:
+      - "5432:5432"
+
+  spring-boot-app:
+    image: movies-ms:latest
+    container_name: my-spring-boot-app
+    build: .
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
+

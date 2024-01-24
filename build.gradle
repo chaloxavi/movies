@@ -19,7 +19,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.liquibase:liquibase-core'
+	implementation 'org.projectlombok:lombok:1.18.28'
+	//implementation 'org.liquibase:liquibase-core'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -27,3 +28,9 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+bootJar {
+	archiveFileName = 'movie-ms.jar'
+}
+
+task stage(dependsOn: ['bootJar'])
+
